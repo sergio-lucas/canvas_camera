@@ -10,15 +10,15 @@ function updateCanvas() {
   window.requestAnimationFrame(updateCanvas);
 }
 
-navigator.getUserMedia(
-	{ video: true }, // Ask for video
-	(stream) => {
-    videoEl.srcObject = stream;
-	  videoEl.play();
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  navigator.mediaDevices.getUserMedia({ video: {deviceId: undefined} })
+    .then(stream => {
+      videoEl.srcObject = stream;
+	    videoEl.play();
     
-    window.requestAnimationFrame(updateCanvas);
-  },
-	(error) => {
-    console.error(error);
-  }
-);
+      window.requestAnimationFrame(updateCanvas);
+    })
+});
